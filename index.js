@@ -30,6 +30,7 @@ var Dropzone = React.createClass({
     rejectClassName: React.PropTypes.string,
 
     disableClick: React.PropTypes.bool,
+    disablePreview: React.PropTypes.bool,
     multiple: React.PropTypes.bool,
     accept: React.PropTypes.string,
   },
@@ -105,7 +106,9 @@ var Dropzone = React.createClass({
 
     for (var i = 0; i < max; i++) {
       var file = droppedFiles[i];
-      file.preview = URL.createObjectURL(file);
+      if (!this.props.disablePreview) {
+        file.preview = URL.createObjectURL(file);
+      }
       files.push(file);
     }
 
